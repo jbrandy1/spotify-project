@@ -16,6 +16,7 @@ export default function App() {
 
     const handleInputChange = (e) => { //I used Chat GPT to figure out a way to store the values from the forms
         const { name, value } = e.target;
+        console.log("Changing this input", name);
         setUserData({ ...userData, [name]: value });
         // my interpretation of this code is that it is taking the userData (Artist or numberOfSongs) and assigning them into "value" associated with the key [name]
     }; 
@@ -26,8 +27,7 @@ export default function App() {
         fetchData(); // Call fetchData 
     };
 
-    useEffect(() => { //useEffect is used to manage data fetched and makes sure that the userinputs are updated when the form fields change
-
+    useEffect(() => { //useEffect was another method Chat GPT suggested; It is used to manage data fetched and makes sure that the userinputs are updated when the form fields change
         if (userData.Artist !== "" && userData.numberOfSongs !== "") { // Since the page starts out without userData, it doesn't run fetchData when the page reloads
             fetchData();
         }
@@ -48,7 +48,7 @@ export default function App() {
         return (
             <iframe
                 key={albumJSON.id}
-                src={`https://open.spotify.com/embed/track/${albumJSON.id}?utm_source=generator`}
+                src={`https://open.spotify.com/embed/track/${albumJSON.id}?utm_source=generator`} //For some reason, the albumJSON.id part i don't think is working properly
                 width="100%" 
                 border="0"
                 height="352" 
